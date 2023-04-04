@@ -3,6 +3,7 @@ import csv
 import boto3
 import configparser
 import os
+from tables import tables
 
 parser = configparser.ConfigParser()
 parser.read("pipeline.conf")
@@ -19,9 +20,6 @@ conn = psycopg2.connect(
     + " password=" + password
     + " host=" + host,
     port=port)
-
-tables = ['rental', 'customer', 'inventory', 'payment', 'staff', 'store', 'address',
-          'city', 'country', 'category', 'film', 'film_actor', 'film_category', 'actor', 'language']
 
 
 def extract(table):
