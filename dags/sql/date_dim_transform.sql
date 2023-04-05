@@ -1,3 +1,5 @@
+TRUNCATE TABLE date_dim;
+
 INSERT INTO date_dim (date, year, quarter, day, month, week, is_weekend)
 SELECT
   payment_date AS date,

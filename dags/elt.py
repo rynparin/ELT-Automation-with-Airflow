@@ -18,42 +18,42 @@ with DAG(
 
     extract = BashOperator(
         task_id='extract',
-        bash_command='python dags/extract.py',
+        bash_command='python /opt/airflow/dags/extract.py',
     )
 
     load = BashOperator(
         task_id='load',
-        bash_command='python dags/load.py',
+        bash_command='python /opt/airflow/dags/python load.py',
     )
 
     date_dim_transform = PostgresOperator(
         task_id='date_dim_transform',
         postgres_conn_id='redshift',
-        sql='dags/sql/date_dim_transform.sql',
+        sql='/opt/airflow/dags/sql/date_dim_transform.sql',
         autocommit=True)
 
     store_dim_transform = PostgresOperator(
         task_id='store_dim_transform',
         postgres_conn_id='redshift',
-        sql='dags/sql/store_dim_transform.sql',
+        sql='/opt/airflow/dags/sql/store_dim_transform.sql',
         autocommit=True)
 
     customer_dim_transform = PostgresOperator(
         task_id='customer_dim_transform',
         postgres_conn_id='redshift',
-        sql='dags/sql/customer_dim_transform.sql',
+        sql='/opt/airflow/dags/sql/customer_dim_transform.sql',
         autocommit=True)
 
     film_dim_transform = PostgresOperator(
         task_id='film_dim_transform',
         postgres_conn_id='redshift',
-        sql='dags/sql/film_dim_transform.sql',
+        sql='/opt/airflow/dags/sql/film_dim_transform.sql',
         autocommit=True)
 
     sales_fact_transform = PostgresOperator(
         task_id='sales_fact_transform',
         postgres_conn_id='redshift',
-        sql='dags/sql/sales_fact_transform.sql',
+        sql='/opt/airflow/dags/sql/sales_fact_transform.sql',
         autocommit=True)
 
     extract >> load >> [date_dim_transform, store_dim_transform,

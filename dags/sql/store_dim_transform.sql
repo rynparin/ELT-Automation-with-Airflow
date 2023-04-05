@@ -1,3 +1,5 @@
+TRUNCATE TABLE store_dim;
+
 INSERT INTO store_dim (
     store_id,
     address,
